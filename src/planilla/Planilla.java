@@ -4,11 +4,13 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 import cursado.*;
 
 @Entity
+@Tabs({@Tab(properties="cursado.alumno.dni,cursado.alumno.nombreYApellido")})
 public class Planilla extends Identifiable {
 
 	@OneToMany
