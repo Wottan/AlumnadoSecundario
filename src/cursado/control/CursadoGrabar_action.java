@@ -23,7 +23,7 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 
 		Map alumnoMap = (Map) view.getValue("alumno");
 		System.out.println("AlumnoMap " + alumnoMap);
-		if (alumnoMap.get("dni")!=null) {
+		if (alumnoMap.get("dni") != null) {
 			alumno = (Alumno) MapFacade.findEntity("Alumno", alumnoMap);
 			System.out.println(alumno.getDni());
 		}
@@ -35,7 +35,7 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 		System.out.println(cursoHabilitado.getCurso().getDescripcion());
 		System.out.println(cursoHabilitado.getCursados().size());
 		Cursado cursado = (Cursado) view.getEntity();
-
+		crearPlanilla(cursoHabilitado, alumno);
 		System.out.println(devolverCursado(cursoHabilitado, alumno).getAlumno().getNombreYApellido());
 		// Map cursadoMap=(Map) view.getValue("id");
 		//
@@ -51,11 +51,14 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 			Planilla planilla = new Planilla();
 			planilla.setMateriaPlanilla(new ArrayList<MateriaPlanilla>());
 			planilla.setCursado(cursado);
+			XPersistence.getManager().persist(planilla);
 			for (Materia materia : cursoHabilitado.getCurso().devolverMaterias()) {
 				materiaPlanilla = new MateriaPlanilla();
 				materiaPlanilla.setNota(new ArrayList<Nota>());
 				materiaPlanilla.setMateria(materia);
 				materiaPlanilla.setPlanilla(planilla);
+				materiaPlanilla.setNota(new ArrayList<Nota>());
+				XPersistence.getManager().persist(materiaPlanilla);
 			}
 
 			// XPersistence.getManager().persist(planilla);
@@ -63,10 +66,10 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 	}
 
 	private Cursado devolverCursado(CursoHabilitado cursoHabilitado, Alumno alumno) {
-//		System.out.println(cursoHabilitado.getCursados().size());
+		// System.out.println(cursoHabilitado.getCursados().size());
 		for (Cursado cursado : cursoHabilitado.getCursados()) {
-//			System.out.println(cursado.getAlumno().getDni());
-//			System.out.println(alumno.getDni());
+			// System.out.println(cursado.getAlumno().getDni());
+			// System.out.println(alumno.getDni());
 			if (cursado.getAlumno().getDni().equals(alumno.getDni())) {
 				System.out.println(alumno.getDni());
 				return cursado;
