@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+
+<!DOCTYPE controladores SYSTEM "dtds/controladores.dtd">
+
+<controladores>
+
+	<!-- Variable de entorno: <var-entorno nombre="Alumnado_ANYO_DEFECTO" valor="2015"/> -->
+
+	<!-- Objeto de sesiÃ³n: <Objeto nombre="Alumnado_anyoActivo" clase="java.lang.Integer" 
+		valor="2015" ambito="global"/> -->
+
+	<!-- Controlador: <controlador nombre="Profesor"> <hereda-de controlador="Typical"/> 
+		<accion nombre="new" icono="library-plus" atajo-de-teclado="Control N" clase="acciones.CrearProfesor"/> 
+		</controlador> -->
+	<!-- <controlador nombre="CursadoControlador"> -->
+	<!-- <accion nombre="Añadir" clase="cursado.control.AnadirAlumnosCursado_action" -->
+	<!-- icono="library-plus"> -->
+	<!-- </accion> -->
+	<!-- </controlador> -->
+
+	<controlador nombre="AsistenciaAlumnoControlador">
+		<accion nombre="grabar"
+			clase="asistencia.control.AsistenciaAlumnoGrabar_action">
+		</accion>
+		<accion nombre="iniciar" al-iniciar="true" oculta="true"
+			clase="asistencia.control.AlIniciar">
+		</accion>
+	</controlador>
+
+	<controlador nombre="AlumnoControlador">
+		<accion nombre="buscar" oculta="true"
+			clase="alumno.control.AlumnoBuscar_search" icono="magnify">
+		</accion>
+	</controlador>
+	<controlador nombre="CursoControlador">
+		<accion nombre="buscar" oculta="true"
+			clase="cursado.control.CursoBuscar_search" icono="magnify">
+		</accion>
+	</controlador>
+
+	<controlador nombre="CursadoControlador">
+		<accion nombre="grabar" clase="cursado.control.CursadoGrabar_action">
+		</accion>
+	</controlador>
+</controladores>
