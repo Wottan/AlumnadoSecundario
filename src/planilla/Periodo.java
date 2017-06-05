@@ -6,9 +6,10 @@ import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 @Entity
-@Views({ @View(name="Simple",members = "id,descripcion")})
+@Views({ @View(name = "Simple", members = "id,descripcion") })
 public class Periodo extends Identifiable {
 
+	@Required
 	private String descripcion;
 
 	public String getDescripcion() {

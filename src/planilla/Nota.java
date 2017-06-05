@@ -7,8 +7,10 @@ import org.openxava.annotations.*;
 @Embeddable
 public class Nota {
 
+	@Required
 	private Double nota;
 
+	@Required
 	@ManyToOne
 	@ReferenceView("Simple")
 	private Periodo periodo;

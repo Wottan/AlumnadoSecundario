@@ -14,6 +14,11 @@ import materia.*;
 public class MateriaPlanilla extends Identifiable {
 
 	@ManyToOne
+	@NoFrame
+	@NoCreate
+	@NoSearch
+	@NoModify
+	@ReadOnly
 	private Materia materia;
 
 	@ManyToOne
@@ -23,6 +28,7 @@ public class MateriaPlanilla extends Identifiable {
 	@ListProperties("periodo.id,periodo.descripcion,nota")
 	private List<Nota> notas;
 
+	
 	public List<Nota> getNotas() {
 		return notas;
 	}
@@ -47,4 +53,17 @@ public class MateriaPlanilla extends Identifiable {
 		this.planilla = planilla;
 	}
 
+	public Double getPromedio(){
+		Double retorno=0.0;
+		int cantidadDeNotas=notas.size();
+		for (Nota nota : notas) {
+			if(nota.getNota()!=null){
+				retorno=retorno+nota.getNota();
+			}
+		}
+		if(cantidadDeNotas!=0){
+			retorno=retorno/cantidadDeNotas;
+		}
+		return retorno;
+	}
 }
