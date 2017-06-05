@@ -10,11 +10,8 @@ import org.openxava.model.*;
 import materia.*;
 
 @Entity
+@Views({ @View(members = "materia;notas") })
 public class MateriaPlanilla extends Identifiable {
-
-	@ElementCollection
-	@ListProperties("periodo,nota")
-	private List<Nota> nota;
 
 	@ManyToOne
 	private Materia materia;
@@ -22,12 +19,16 @@ public class MateriaPlanilla extends Identifiable {
 	@ManyToOne
 	private Planilla planilla;
 
-	public List<Nota> getNota() {
-		return nota;
+	@ElementCollection
+	@ListProperties("periodo.id,periodo.descripcion,nota")
+	private List<Nota> notas;
+
+	public List<Nota> getNotas() {
+		return notas;
 	}
 
-	public void setNota(List<Nota> nota) {
-		this.nota = nota;
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 
 	public Materia getMateria() {

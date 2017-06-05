@@ -13,7 +13,7 @@ import cursado.*;
 @Tabs({@Tab(properties="cursado.alumno.dni,cursado.alumno.nombreYApellido")})
 public class Planilla extends Identifiable {
 
-	@OneToMany
+	@OneToMany(mappedBy="planilla")
 	private List<MateriaPlanilla> materiaPlanilla;
 
 	@ManyToOne

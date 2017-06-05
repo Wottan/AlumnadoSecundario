@@ -6,16 +6,8 @@ import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 @Entity
-@Views({ @View(members = "descripcion") })
+@Views({ @View(name="Simple",members = "id,descripcion")})
 public class Periodo extends Identifiable {
-	//
-	//
-	// private Periodos periodo;
-	//
-	// public enum Periodos {
-	// PrimerTrimestre, SegundoTrimestre, TercerTrimestre, EvaluacionDiciembre,
-	// EvaluacionMarzo
-	// };
 
 	private String descripcion;
 

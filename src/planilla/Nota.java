@@ -1,37 +1,24 @@
 package planilla;
 
-import java.util.*;
-
 import javax.persistence.*;
 
 import org.openxava.annotations.*;
-import org.openxava.model.*;
 
-@Entity
-public class Nota extends Identifiable {
+@Embeddable
+public class Nota {
 
-	@Required
-	private double nota;
-
-	private Date fecha;
+	private Double nota;
 
 	@ManyToOne
+	@ReferenceView("Simple")
 	private Periodo periodo;
 
-	public double getNota() {
+	public Double getNota() {
 		return nota;
 	}
 
-	public void setNota(double nota) {
+	public void setNota(Double nota) {
 		this.nota = nota;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 
 	public Periodo getPeriodo() {

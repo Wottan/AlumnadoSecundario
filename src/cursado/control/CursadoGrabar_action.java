@@ -54,14 +54,11 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 			XPersistence.getManager().persist(planilla);
 			for (Materia materia : cursoHabilitado.getCurso().devolverMaterias()) {
 				materiaPlanilla = new MateriaPlanilla();
-				materiaPlanilla.setNota(new ArrayList<Nota>());
 				materiaPlanilla.setMateria(materia);
 				materiaPlanilla.setPlanilla(planilla);
-				materiaPlanilla.setNota(new ArrayList<Nota>());
 				XPersistence.getManager().persist(materiaPlanilla);
 			}
 
-			// XPersistence.getManager().persist(planilla);
 		}
 	}
 
