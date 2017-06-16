@@ -42,4 +42,12 @@
 		<accion nombre="grabar" clase="cursado.control.CursadoGrabar_action">
 		</accion>
 	</controlador>
+
+
+	<controlador nombre="ExamenControlador">
+		<accion nombre="buscarMateria" oculta="true"
+			clase="examen.control.ExamenBuscar_search" icono="magnify">
+		</accion>
+	</controlador>
+
 </controladores>
