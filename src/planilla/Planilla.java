@@ -20,7 +20,7 @@ public class Planilla extends Identifiable {
 	@ListProperties("materia.descripcion,promedio")
 	private List<MateriaPlanilla> materiaPlanilla;
 
-	@ManyToOne
+	@OneToOne
 	private Cursado cursado;
 
 	public List<MateriaPlanilla> getMateriaPlanilla() {
@@ -39,4 +39,15 @@ public class Planilla extends Identifiable {
 		this.cursado = cursado;
 	}
 
+	public List<MateriaPlanilla> devolverPrevias() {
+		ArrayList<MateriaPlanilla> previas = new ArrayList<MateriaPlanilla>();
+		for (MateriaPlanilla materiaPlanilla : materiaPlanilla) {
+			if (materiaPlanilla.getNotas().size() >= 3) {
+				if (materiaPlanilla.getPromedio() <= 6) {
+					previas.add(materiaPlanilla);
+				}
+			}
+		}
+		return previas;
+	}
 }
