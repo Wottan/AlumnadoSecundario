@@ -58,7 +58,7 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 				materiaPlanilla.setPlanilla(planilla);
 				XPersistence.getManager().persist(materiaPlanilla);
 			}
-
+			cursado.setPlanilla(planilla);
 		}
 	}
 
