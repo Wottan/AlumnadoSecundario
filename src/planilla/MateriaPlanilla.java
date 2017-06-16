@@ -10,7 +10,8 @@ import org.openxava.model.*;
 import materia.*;
 
 @Entity
-@Views({ @View(members = "materia;notas") })
+@Views({ @View(members = "materia;notas"),
+		 @View(name="Examen", members="id;materia")	})
 public class MateriaPlanilla extends Identifiable {
 
 	@ManyToOne
@@ -66,4 +67,6 @@ public class MateriaPlanilla extends Identifiable {
 		}
 		return retorno;
 	}
+	
+	
 }
