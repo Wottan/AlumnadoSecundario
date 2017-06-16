@@ -43,7 +43,6 @@
 		</accion>
 	</controlador>
 
-
 	<controlador nombre="ExamenControlador">
 		<accion nombre="buscarMateria" oculta="true"
 			clase="examen.control.ExamenBuscar_search" icono="magnify">
