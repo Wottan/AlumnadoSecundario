@@ -6,6 +6,7 @@ import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 import alumno.*;
+import planilla.*;
 
 @Entity
 // @Tabs({ @Tab(properties = "anio,anioDeCurso,division") })
@@ -22,6 +23,9 @@ public class Cursado extends Identifiable {
 
 	@ManyToOne
 	private CursoHabilitado cursoHabilitado;
+
+	@OneToOne
+	private Planilla planilla;
 
 	public boolean isEgresado() {
 		return egresado;
@@ -45,6 +49,14 @@ public class Cursado extends Identifiable {
 
 	public void setCursoHabilitado(CursoHabilitado cursoHabilitado) {
 		this.cursoHabilitado = cursoHabilitado;
+	}
+
+	public Planilla getPlanilla() {
+		return planilla;
+	}
+
+	public void setPlanilla(Planilla planilla) {
+		this.planilla = planilla;
 	}
 
 }
