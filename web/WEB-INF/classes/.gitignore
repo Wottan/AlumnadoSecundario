@@ -1,5 +1,7 @@
+/BeansContext.properties
 /EtiquetasAlumnado_es.properties
 /GalleryImage.hbm.xml
+/LoginContextFactory.properties
 /META-INF/
 /MensajesAlumnado_es.properties
 /alumno/
@@ -11,7 +13,12 @@
 /dtds/
 /examen/
 /hibernate.cfg.xml
+/jndi-jboss.properties
+/jndi-websphere.properties
+/jndi.properties
+/logging.properties
 /materia/
+/naviox-users.properties
 /naviox.properties
 /orientacion/
 /planilla/
