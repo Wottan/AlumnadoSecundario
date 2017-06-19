@@ -12,14 +12,15 @@ public class AlCambiarCalificacionExamen extends OnChangePropertyBaseAction {
 				getView().setValue("presente", true);
 				if (calificacion >= 6) {
 					getView().setValue("aprobo", true);
-				}else{
+				} else {
 					getView().setValue("aprobo", false);
 				}
 			} else {
 				getView().setValue("calificacion", null);
+				getView().setValue("presente", false);
 				throw new Exception("Ingrese una calificacion correcta");
 			}
-		}else{
+		} else {
 			getView().setValue("presente", false);
 		}
 	}
