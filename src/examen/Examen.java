@@ -8,6 +8,7 @@ import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 import alumno.*;
+import examen.control.*;
 import materia.*;
 import planilla.*;
 
@@ -15,17 +16,21 @@ import planilla.*;
 @Tabs({ @Tab(properties = "fecha,alumno.dni,alumno.nombreYApellido,calificacion,materiaPlanilla.materia.descripcion,presente") })
 public class Examen extends Identifiable {
 
+	@Required
 	private Date fecha;
 
+	@Required
 	@ManyToOne
 	@ReferenceView("Simple2")
 	private Alumno alumno;
 
+	@Required
 	@ManyToOne
 	@SearchAction("ExamenControlador.buscarMateria")
 	@ReferenceView("Examen")
 	private MateriaPlanilla materiaPlanilla;
 
+	@OnChange(AlCambiarCalificacionExamen.class)
 	private Double calificacion;
 
 	private Boolean presente;

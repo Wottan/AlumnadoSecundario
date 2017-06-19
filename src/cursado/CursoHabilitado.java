@@ -13,7 +13,7 @@ import curso.*;
 
 @Entity
 @Tab(properties = "anio,curso.descripcion,curso.orientacion.descripcion,curso.anioOrientacion.anio,curso.division.descripcion")
-@Views({ @View(name = "Asistencia", members = "id;curso") })
+@Views({ @View(name = "Asistencia", members = "id;curso"), @View(name="SinCursado",members="anio;curso") })
 public class CursoHabilitado extends Identifiable {
 
 	@ReadOnly

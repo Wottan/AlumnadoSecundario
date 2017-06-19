@@ -10,6 +10,7 @@ import org.openxava.model.*;
 import cursado.*;
 
 @Entity
+@Views({ @View(members = "Alumno[cursado];materiaPlanilla") })
 @Tabs({ @Tab(properties = "cursado.alumno.dni,cursado.alumno.nombreYApellido") })
 public class Planilla extends Identifiable {
 
@@ -21,6 +22,9 @@ public class Planilla extends Identifiable {
 	private List<MateriaPlanilla> materiaPlanilla;
 
 	@OneToOne
+	@ReadOnly
+	@ReferenceView("ConCurso")
+	@NoFrame
 	private Cursado cursado;
 
 	public List<MateriaPlanilla> getMateriaPlanilla() {
