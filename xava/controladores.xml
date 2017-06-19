@@ -49,4 +49,25 @@
 		</accion>
 	</controlador>
 
+	<controlador nombre="PlanillaControlador">
+		<hereda-de controlador="Typical" />
+		<!-- <accion nombre="grabar" clase="planilla.control.PlanillaGrabar_action" -->
+		<!-- modo="detail" por-defecto="siempre"> -->
+		<!-- </accion> -->
+		<accion nombre="new" oculta="true">
+		</accion>
+		<accion nombre="delete" oculta="true">
+		</accion>
+		<accion nombre="search" oculta="true">
+		</accion>
+
+		<accion nombre="deleteSelected" oculta="true">
+		</accion>
+		<accion nombre="deleteRow" oculta="true">
+		</accion>
+	</controlador>
+
+	<controlador nombre="DefaultListActionsForCollections">
+	</controlador>
+
 </controladores>

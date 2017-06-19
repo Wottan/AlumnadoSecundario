@@ -10,7 +10,7 @@ import planilla.*;
 
 @Entity
 // @Tabs({ @Tab(properties = "anio,anioDeCurso,division") })
-@Views({ @View(members = "alumno") })
+@Views({ @View(members = "alumno"),@View(name="ConCurso",members="alumno;cursoHabilitado") })
 public class Cursado extends Identifiable {
 
 	private boolean egresado;
@@ -19,9 +19,12 @@ public class Cursado extends Identifiable {
 	@ManyToOne
 	@ReferenceView("SimpleCursado")
 	@SearchAction("AlumnoControlador.buscar")
+	@NoFrame(forViews="ConCurso")
 	private Alumno alumno;
 
 	@ManyToOne
+	@ReferenceView("SinCursado")
+	@NoFrame
 	private CursoHabilitado cursoHabilitado;
 
 	@OneToOne
