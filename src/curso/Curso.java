@@ -13,14 +13,12 @@ import orientacion.*;
 import util.*;
 
 @Entity
-@Tabs({ @Tab(properties = "descripcion,division.descripcion,anioOrientacion.anio") })
-@Views({ @View(name = "Simple", members = "descripcion;division;orientacion;anio"),
-		@View(members = "descripcion;orientacion;anioOrientacion;division") })
+@Tabs({ @Tab(properties = "division.descripcion,anioOrientacion.anio") })
+@Views({ @View(name = "Simple", members = "division;orientacion;anio"),
+		@View(members = "orientacion;anioOrientacion;division") })
 public class Curso extends Identifiable {
 
 	@Required
-	private String descripcion;
-
 	@ManyToOne
 	@DescriptionsList
 	private Division division;
@@ -28,21 +26,15 @@ public class Curso extends Identifiable {
 	@OneToMany(mappedBy = "curso")
 	private List<CursoHabilitado> cursosHabilitados;
 
+	@Required
 	@ManyToOne
 	@DescriptionsList
 	private Orientacion orientacion;
 
+	@Required
 	@ManyToOne
 	@DescriptionsList(descriptionProperties = "anio", depends = "orientacion", condition = "${orientacion.id}=?")
 	private AnioOrientacion anioOrientacion;
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 
 	public Division getDivision() {
 		return division;
@@ -64,6 +56,15 @@ public class Curso extends Identifiable {
 		int año = Util.obtenerAnio(new Date());
 		for (CursoHabilitado cursoHabilitado : cursosHabilitados) {
 			if (cursoHabilitado.getAnio() == año) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean anioMayorEnCursoHabilitado(int anio) {
+		for (CursoHabilitado cursoHabilitado : cursosHabilitados) {
+			if (anio <= cursoHabilitado.getAnio()) {
 				return true;
 			}
 		}
@@ -93,11 +94,21 @@ public class Curso extends Identifiable {
 	public String devolverInformacion() {
 		return this.descripcion + " " + this.anioOrientacion.getAnio() + " " + this.division.getDescripcion();
 	}
-	
-	public List<Materia> devolverMaterias(){
-		List<Materia>retorno= new ArrayList<Materia>();
+
+	public List<Materia> devolverMaterias() {
+		List<Materia> retorno = new ArrayList<Materia>();
 		for (MateriaPorAnio materiaPorAnio : anioOrientacion.getMaterias()) {
 			retorno.add(materiaPorAnio.getMateria());
+		}
+		return retorno;
+	}
+
+	public List<Cursado> devolverCursadosDeAnioAnteriorHasta3Previas(int anio) {
+		ArrayList<Cursado> retorno = new ArrayList<Cursado>();
+		for (CursoHabilitado cursoHabilitado : cursosHabilitados) {
+			if (cursoHabilitado.getAnio() == anio - 1) {
+				retorno.addAll(cursoHabilitado.devolverAlumnosQueTenganHasta3Previas());
+			}
 		}
 		return retorno;
 	}

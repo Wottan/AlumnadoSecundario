@@ -14,7 +14,7 @@ import cursado.*;
 @Tabs({ @Tab(properties = "cursado.alumno.dni,cursado.alumno.nombreYApellido") })
 public class Planilla extends Identifiable {
 
-	@OneToMany(mappedBy = "planilla")
+	@OneToMany(mappedBy = "planilla", cascade = CascadeType.REMOVE)
 	@NoCreate
 	@RemoveAction("")
 	@RemoveSelectedAction("")
@@ -43,11 +43,20 @@ public class Planilla extends Identifiable {
 		this.cursado = cursado;
 	}
 
+	public boolean puedeInscribirse() {
+		System.out.println(devolverPrevias().size());
+		
+		if (devolverPrevias().size() <=3) {
+			return true;
+		}
+		return false;
+	}
+
 	public List<MateriaPlanilla> devolverPrevias() {
 		ArrayList<MateriaPlanilla> previas = new ArrayList<MateriaPlanilla>();
 		for (MateriaPlanilla materiaPlanilla : materiaPlanilla) {
 			if (materiaPlanilla.getNotas().size() >= 3) {
-				if (materiaPlanilla.getPromedio() <= 6) {
+				if (materiaPlanilla.getPromedio() < 6) {
 					previas.add(materiaPlanilla);
 				}
 			}

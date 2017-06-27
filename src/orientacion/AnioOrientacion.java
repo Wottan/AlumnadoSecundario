@@ -7,6 +7,8 @@ import javax.persistence.*;
 import org.openxava.annotations.*;
 import org.openxava.model.*;
 
+import curso.*;
+
 @Entity
 public class AnioOrientacion extends Identifiable {
 

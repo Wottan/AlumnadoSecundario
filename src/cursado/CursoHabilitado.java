@@ -9,14 +9,16 @@ import org.openxava.calculators.*;
 import org.openxava.model.*;
 
 import asistencia.control.*;
+import cursado.control.*;
 import curso.*;
 
 @Entity
-@Tab(properties = "anio,curso.descripcion,curso.orientacion.descripcion,curso.anioOrientacion.anio,curso.division.descripcion")
-@Views({ @View(name = "Asistencia", members = "id;curso"), @View(name="SinCursado",members="anio;curso") })
+@Tab(properties = "anio,curso.orientacion.descripcion,curso.anioOrientacion.anio,curso.division.descripcion")
+@Views({ @View(name = "Asistencia", members = "id;curso"), @View(name = "SinCursado", members = "anio;curso") })
 public class CursoHabilitado extends Identifiable {
 
-	@ReadOnly
+	@Required
+	// @ReadOnly
 	@DefaultValueCalculator(CurrentYearCalculator.class)
 	private int anio;
 
@@ -25,6 +27,7 @@ public class CursoHabilitado extends Identifiable {
 	@ReferenceView("Simple")
 	@NoFrame
 	@SearchAction("CursoControlador.buscar")
+	@OnChange(AlCambiarCurso.class)
 	private Curso curso;
 
 	// @NewAction("CursadoControlador.A�adir")
@@ -57,4 +60,13 @@ public class CursoHabilitado extends Identifiable {
 		this.cursados = cursados;
 	}
 
+	public List<Cursado> devolverAlumnosQueTenganHasta3Previas() {
+		ArrayList<Cursado> retorno = new ArrayList<Cursado>();
+		for (Cursado cursado : cursados) {
+			if (cursado.getPlanilla().puedeInscribirse()) {
+				retorno.add(cursado);
+			}
+		}
+		return retorno;
+	}
 }
