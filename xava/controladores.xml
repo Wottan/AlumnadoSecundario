@@ -60,14 +60,22 @@
 		</accion>
 		<accion nombre="search" oculta="true">
 		</accion>
-
 		<accion nombre="deleteSelected" oculta="true">
 		</accion>
 		<accion nombre="deleteRow" oculta="true">
 		</accion>
 	</controlador>
 
+	<controlador nombre="CursoControlador">
+		<hereda-de controlador="Typical" />
+		<accion nombre="save" modo="detail" por-defecto="siempre"
+			clase="curso.control.CursoGrabar_action">
+		</accion>
+	</controlador>
+
 	<controlador nombre="DefaultListActionsForCollections">
 	</controlador>
+
+
 
 </controladores>
