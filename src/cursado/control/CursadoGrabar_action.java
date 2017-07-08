@@ -14,8 +14,11 @@ import planilla.*;
 
 public class CursadoGrabar_action extends SaveElementInCollectionAction {
 
+	private String nextAction = null;
+
 	@Override
 	public void execute() throws Exception {
+
 		System.out.println("Ingreso");
 		Alumno alumno = null;
 		View view = (View) getContext().get(getRequest(), getView().getViewObject());
@@ -32,7 +35,6 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 		Map cursoHabilitadoMap = new HashMap();
 		cursoHabilitadoMap.put("id", getView().getValue("id"));
 		CursoHabilitado cursoHabilitado = (CursoHabilitado) MapFacade.findEntity("CursoHabilitado", cursoHabilitadoMap);
-		System.out.println(cursoHabilitado.getCurso().getDescripcion());
 		System.out.println(cursoHabilitado.getCursados().size());
 		Cursado cursado = (Cursado) view.getEntity();
 		crearPlanilla(cursoHabilitado, alumno);
@@ -74,4 +76,5 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 		}
 		return null;
 	}
+
 }

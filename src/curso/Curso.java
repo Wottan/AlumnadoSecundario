@@ -14,7 +14,7 @@ import util.*;
 
 @Entity
 @Tabs({ @Tab(properties = "division.descripcion,anioOrientacion.anio") })
-@Views({ @View(name = "Simple", members = "division;orientacion;anio"),
+@Views({ @View(name = "Simple", members = "id;division;orientacion;anio"),
 		@View(members = "orientacion;anioOrientacion;division") })
 public class Curso extends Identifiable {
 
@@ -92,7 +92,7 @@ public class Curso extends Identifiable {
 	}
 
 	public String devolverInformacion() {
-		return this.descripcion + " " + this.anioOrientacion.getAnio() + " " + this.division.getDescripcion();
+		return this.orientacion.getDescripcion() + " " + this.anioOrientacion.getAnio() + " " + this.division.getDescripcion();
 	}
 
 	public List<Materia> devolverMaterias() {

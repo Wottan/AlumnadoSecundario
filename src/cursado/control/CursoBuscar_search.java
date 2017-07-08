@@ -18,9 +18,10 @@ public class CursoBuscar_search extends ReferenceSearchAction {
 		System.out.println("Año " + anio);
 		super.execute();
 		System.out.println(codigosDeCursos(anio));
-		getTab().setPropertiesNames("descripcion,division.descripcion,anioOrientacion.anio");
+		getTab().setPropertiesNames("orientacion.descripcion,division.descripcion,anioOrientacion.anio");
 		// getTab().setBaseCondition("${id} not in (" + codigosDeCursos() +
 		// ")");
+		System.out.println(codigosDeCursos(anio));
 		getTab().setBaseCondition("${id} not in (" + codigosDeCursos(anio) + ")");
 	}
 

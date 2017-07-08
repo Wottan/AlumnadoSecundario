@@ -31,7 +31,7 @@ public class Alumno extends Persona {
 	public Long getDocumento() {
 		return getDni();
 	}
-
+	
 	public CursoHabilitado devolverCursoHabilitadoDelAnioActual() {
 		int año = Util.obtenerAnio(new Date());
 		for (Cursado cursado : cursados) {

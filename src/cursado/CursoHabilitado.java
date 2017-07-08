@@ -23,6 +23,8 @@ public class CursoHabilitado extends Identifiable {
 	private int anio;
 
 	@Required
+	@NoCreate
+	@NoModify
 	@ManyToOne
 	@ReferenceView("Simple")
 	@NoFrame
