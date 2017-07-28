@@ -11,6 +11,7 @@ public class MateriaPorAnio {
 
 	@ManyToOne
 	@ReferenceView("Simple")
+	@SearchAction("MateriaControlador.buscar")
 	private Materia materia;
 
 	private int horasCatedra;

@@ -31,15 +31,55 @@ public class Alumno extends Persona {
 	public Long getDocumento() {
 		return getDni();
 	}
-	
+
 	public CursoHabilitado devolverCursoHabilitadoDelAnioActual() {
-		int año = Util.obtenerAnio(new Date());
+		int año = 2018/* Util.obtenerAnio(new Date()) */;
+		System.out.println("Anio " + año);
+		System.out.println("Cursado size " + cursados.size());
 		for (Cursado cursado : cursados) {
+			System.out.println("Alumno " + cursado.getAlumno().getNombreYApellido());
+			System.out.println("Anio cursoHabilitado " + cursado.getCursoHabilitado().getAnio());
 			if (cursado.getCursoHabilitado().getAnio() == año) {
 				return cursado.getCursoHabilitado();
 			}
 		}
 		return null;
+	}
+
+	public boolean sePuedeInscribir(Curso curso) {
+		if (devolverPrevias().size() <= 3) {
+			if (curso.getAnio() > 2) {
+				if (estuvoElAnioAnteriorEnUnCursoDeLaMismaOrientacion(curso)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean estuvoElAnioAnteriorEnUnCursoDeLaMismaOrientacion(Curso curso) {
+		int anio = Util.obtenerAnio(new Date()) - 1;
+		for (Cursado cursado : cursados) {
+			if (cursado.getCursoHabilitado().getAnio() == anio) {
+				if (cursado.getCursoHabilitado().getCurso().getOrientacion().getId() == curso.getOrientacion()
+						.getId()) {
+					return true;
+				} 
+			}
+		}
+		return false;
+	}
+
+	public boolean estaCursandoPrimero() {
+		int anio = Util.obtenerAnio(new Date()) - 1;
+		for (Cursado cursado : cursados) {
+			if (cursado.getCursoHabilitado().getAnio() == anio) {
+				if (cursado.getCursoHabilitado().getCurso().getAnio() == 1) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public String getCurso() {
@@ -58,9 +98,7 @@ public class Alumno extends Persona {
 
 		for (Examen examen : examenesFinales) {
 			if (examen.getAprobo()) {
-				// if(previas.contains(examen.getMateriaPlanilla())){
 				previas.remove(examen.getMateriaPlanilla());
-				// }
 			}
 		}
 		return previas;
