@@ -80,5 +80,10 @@
 	<controlador nombre="DefaultListActionsForCollections">
 	</controlador>
 
+		<controlador nombre="MateriaControlador">
+		<accion nombre="buscar" oculta="true"
+			clase="materia.control.MateriaBuscar_search" icono="magnify">
+		</accion>
+	</controlador>
 
 </controladores>
