@@ -35,6 +35,8 @@ public class CursadoGrabar_action extends SaveElementInCollectionAction {
 		Map cursoHabilitadoMap = new HashMap();
 		cursoHabilitadoMap.put("id", getView().getValue("id"));
 		CursoHabilitado cursoHabilitado = (CursoHabilitado) MapFacade.findEntity("CursoHabilitado", cursoHabilitadoMap);
+
+
 		System.out.println(cursoHabilitado.getCursados().size());
 		Cursado cursado = (Cursado) view.getEntity();
 		crearPlanilla(cursoHabilitado, alumno);

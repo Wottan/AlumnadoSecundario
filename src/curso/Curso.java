@@ -92,7 +92,7 @@ public class Curso extends Identifiable {
 	}
 
 	public String devolverInformacion() {
-		return this.orientacion.getDescripcion() + " " + this.anioOrientacion.getAnio() + " " + this.division.getDescripcion();
+		return this.anioOrientacion.getAnio() + " " + this.division.getDescripcion();
 	}
 
 	public List<Materia> devolverMaterias() {
